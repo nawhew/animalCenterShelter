@@ -1,11 +1,15 @@
 package com.austinanimalcenter.shelter.inout;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
+@Getter @Setter @EqualsAndHashCode(of = "animalId")
+@Builder @ToString @NoArgsConstructor @AllArgsConstructor
 public class Intakes {
 
     @Id

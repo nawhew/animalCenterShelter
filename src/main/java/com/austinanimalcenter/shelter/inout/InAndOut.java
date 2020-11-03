@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Entity @Table(name = "INTAKE_OUTCOMES")
+//@Entity @Table(name = "INTAKE_OUTCOMES")
 public class InAndOut {
 
     private String ageUponOutcome;

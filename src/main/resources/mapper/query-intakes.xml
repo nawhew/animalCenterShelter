@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.austinanimalcenter.shelter.inout.Intakes">
+
+    <!--동물 보호소에 들어온 모든 동물의 정보를 ANIMAL_ID순으로 조회-->
+    <select id="selectAllOrderByAnimalId" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
+        FROM Intakes AS ANIMAL_INS
+        ORDER BY ANIMAL_ID
+        ;
+    </select>
+</mapper>
