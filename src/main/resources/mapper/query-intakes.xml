@@ -18,4 +18,12 @@
         ORDER BY ANIMAL_ID DESC
         ;
     </select>
+
+    <!--아픈 동물 조회 : intake_condition is 'Sick'-->
+    <select id="selectSickAnimal" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT ANIMAL_ID, NAME
+        FROM Intakes AS ANIMAL_INS
+        WHERE INTAKE_CONDITION = 'Sick'
+        ;
+    </select>
 </mapper>
