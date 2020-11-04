@@ -10,4 +10,12 @@
         ORDER BY ANIMAL_ID
         ;
     </select>
+
+    <!--동물 보호소에 들어온 모든 동물의 이름과 시간을 ANIMAL_ID역순으로 조회-->
+    <select id="selectAllOrderByAnimalIdDesc" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT NAME, DATETIME
+        FROM Intakes AS ANIMAL_INS
+        ORDER BY ANIMAL_ID DESC
+        ;
+    </select>
 </mapper>

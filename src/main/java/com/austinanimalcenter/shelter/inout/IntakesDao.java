@@ -17,4 +17,8 @@ public class IntakesDao {
     public List<Intakes> selectAllOrderByAnimalId() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectAllOrderByAnimalId");
     }
+
+    public List<Intakes> selectAllOrderByAnimalIdDesc() {
+        return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectAllOrderByAnimalIdDesc");
+    }
 }

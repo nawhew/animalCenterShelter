@@ -37,4 +37,23 @@ public class IntakesDaoTest {
         List<Intakes> intakesList = this.intakesDao.selectAllOrderByAnimalId();
         intakesList.stream().forEach(System.out::println);
     }
+
+
+    @Test
+    public void selectAllOrderByAnimalIdDesc() {
+        //given
+        Intakes intakes = Intakes.builder()
+                .animalId("foo")
+                .animalType("none")
+                .datetime(null)
+                .intakeCondition("good")
+                .name("foo")
+                .sexUponIntake("unknown")
+                .build();
+        this.intakesRepository.saveAndFlush(intakes);
+
+        // when & then
+        List<Intakes> intakesList = this.intakesDao.selectAllOrderByAnimalIdDesc();
+        intakesList.stream().forEach(System.out::println);
+    }
 }
