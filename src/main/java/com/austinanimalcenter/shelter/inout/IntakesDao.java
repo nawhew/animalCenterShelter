@@ -25,4 +25,8 @@ public class IntakesDao {
     public List<Intakes> selectSickAnimal() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectSickAnimal");
     }
+
+    public List<Intakes> selectNotAgedAnimal() {
+        return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectNotAgedAnimal");
+    }
 }

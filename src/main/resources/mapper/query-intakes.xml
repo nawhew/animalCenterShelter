@@ -3,7 +3,7 @@
 
 <mapper namespace="com.austinanimalcenter.shelter.inout.Intakes">
 
-    <!--동물 보호소에 들어온 모든 동물의 정보를 ANIMAL_ID순으로 조회-->
+    <!-- 동물 보호소에 들어온 모든 동물의 정보를 ANIMAL_ID순으로 조회-->
     <select id="selectAllOrderByAnimalId" resultType="com.austinanimalcenter.shelter.inout.Intakes">
         SELECT ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
         FROM Intakes AS ANIMAL_INS
@@ -11,7 +11,7 @@
         ;
     </select>
 
-    <!--동물 보호소에 들어온 모든 동물의 이름과 시간을 ANIMAL_ID역순으로 조회-->
+    <!-- 동물 보호소에 들어온 모든 동물의 이름과 시간을 ANIMAL_ID역순으로 조회-->
     <select id="selectAllOrderByAnimalIdDesc" resultType="com.austinanimalcenter.shelter.inout.Intakes">
         SELECT NAME, DATETIME
         FROM Intakes AS ANIMAL_INS
@@ -19,11 +19,21 @@
         ;
     </select>
 
-    <!--아픈 동물 조회 : intake_condition is 'Sick'-->
+    <!-- 아픈 동물 조회 : intake_condition is 'Sick'-->
     <select id="selectSickAnimal" resultType="com.austinanimalcenter.shelter.inout.Intakes">
         SELECT ANIMAL_ID, NAME
         FROM Intakes AS ANIMAL_INS
         WHERE INTAKE_CONDITION = 'Sick'
         ;
     </select>
+
+    <!-- 늙지 않은 동물 조회 : intake_condition is not 'Aged'-->
+    <select id="selectNotAgedAnimal" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT ANIMAL_ID, NAME
+        FROM Intakes AS ANIMAL_INS
+        WHERE INTAKE_CONDITION <![CDATA[<>]]> 'Aged'
+        ORDER BY ANIMAL_ID
+        ;
+    </select>
+
 </mapper>
