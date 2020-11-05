@@ -48,10 +48,22 @@
     <!-- 개와 고양이의 수 조회 -->
     <select id="selectCountCatAndDog" resultType="com.austinanimalcenter.shelter.inout.Intakes">
         SELECT ANIMAL_TYPE, COUNT(ANIMAL_TYPE)
-        FROM ANIMAL_INS
+        FROM Intakes AS ANIMAL_INS
         WHERE ANIMAL_TYPE IN ('Cat', 'Dog')
         GROUP BY ANIMAL_TYPE
         ORDER BY ANIMAL_TYPE
         ;
     </select>
+
+    <!-- 중복되는 동물 이름 조회 -->
+    <select id="selectDuplicateAnimalName" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT NAME, COUNT(*)
+        FROM Intakes AS ANIMAL_INS
+        WHERE NAME IS NOT NULL
+        GROUP BY NAME
+        HAVING COUNT(*) <![CDATA[>=]]> 2
+        ORDER BY NAME
+        ;
+    </select>
+
 </mapper>

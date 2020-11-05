@@ -37,4 +37,9 @@ public class IntakesDao {
     public List<Intakes> selectCountCatAndDog() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectCountCatAndDog");
     }
+
+    public List<Intakes> selectDuplicateAnimalName() {
+        return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectDuplicateAnimalName");
+    }
+
 }
