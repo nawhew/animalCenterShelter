@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.austinanimalcenter.shelter.inout.Outcomes">
+
+    <!-- 시간 별 입양 건수 조회 (9~20) -->
+    <select id="selectOutcomeGroupByHour" resultType="com.austinanimalcenter.shelter.inout.Outcomes">
+        SELECT AO.HOUR, COUNT(*)
+        FROM (
+            SELECT CAST(SUBSTR(DATETIME, 12, 2) AS INT) HOUR
+            FROM OUTCOMES AS ANIMAL_OUTS
+            ) AO
+        WHERE AO.HOUR BETWEEN 9 AND 19
+        GROUP BY AO.HOUR
+        ORDER BY AO.HOUR
+        ;
+    </select>
+
+</mapper>
