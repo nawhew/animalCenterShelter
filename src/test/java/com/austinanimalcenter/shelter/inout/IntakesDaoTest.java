@@ -110,4 +110,6 @@ public class IntakesDaoTest {
         List<Intakes> intakesList = this.intakesDao.selectFirstInAnimalName();
         intakesList.stream().forEach(System.out::println);
     }
+
+
 }

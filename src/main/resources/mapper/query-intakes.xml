@@ -36,7 +36,6 @@
         ;
     </select>
 
-
     <!-- 가장 처음 들어온 동물 이름 조회 -->
     <select id="selectFirstInAnimalName" resultType="com.austinanimalcenter.shelter.inout.Intakes">
         SELECT NAME
@@ -46,4 +45,13 @@
         ;
     </select>
 
+    <!-- 개와 고양이의 수 조회 -->
+    <select id="selectCountCatAndDog" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT ANIMAL_TYPE, COUNT(ANIMAL_TYPE)
+        FROM ANIMAL_INS
+        WHERE ANIMAL_TYPE IN ('Cat', 'Dog')
+        GROUP BY ANIMAL_TYPE
+        ORDER BY ANIMAL_TYPE
+        ;
+    </select>
 </mapper>

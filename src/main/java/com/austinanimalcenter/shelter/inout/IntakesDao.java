@@ -34,4 +34,7 @@ public class IntakesDao {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectFirstInAnimalName");
     }
 
+    public List<Intakes> selectCountCatAndDog() {
+        return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectCountCatAndDog");
+    }
 }
