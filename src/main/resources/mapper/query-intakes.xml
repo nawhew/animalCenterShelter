@@ -36,4 +36,14 @@
         ;
     </select>
 
+
+    <!-- 가장 처음 들어온 동물 이름 조회 -->
+    <select id="selectFirstInAnimalName" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+        SELECT NAME
+        FROM Intakes AS ANIMAL_INS
+        ORDER BY DATETIME
+        LIMIT 1
+        ;
+    </select>
+
 </mapper>

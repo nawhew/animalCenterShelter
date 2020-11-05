@@ -92,4 +92,22 @@ public class IntakesDaoTest {
         List<Intakes> intakesList = this.intakesDao.selectNotAgedAnimal();
         intakesList.stream().forEach(System.out::println);
     }
+
+    @Test
+    public void selectFirstInAnimalName() {
+        //given
+        Intakes intakes = Intakes.builder()
+                .animalId("foo")
+                .animalType("none")
+                .datetime(null)
+                .intakeCondition("Sick")
+                .name("foo")
+                .sexUponIntake("unknown")
+                .build();
+        this.intakesRepository.saveAndFlush(intakes);
+
+        // when & then
+        List<Intakes> intakesList = this.intakesDao.selectFirstInAnimalName();
+        intakesList.stream().forEach(System.out::println);
+    }
 }
