@@ -46,7 +46,7 @@
     </select>
 
     <!-- 개와 고양이의 수 조회 -->
-    <select id="selectCountCatAndDog" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+    <select id="selectCountCatAndDog" resultType="java.util.Map">
         SELECT ANIMAL_TYPE, COUNT(ANIMAL_TYPE)
         FROM Intakes AS ANIMAL_INS
         WHERE ANIMAL_TYPE IN ('Cat', 'Dog')
@@ -56,13 +56,22 @@
     </select>
 
     <!-- 중복되는 동물 이름 조회 -->
-    <select id="selectDuplicateAnimalName" resultType="com.austinanimalcenter.shelter.inout.Intakes">
-        SELECT NAME, COUNT(*)
+    <select id="selectDuplicateAnimalName" resultType="java.util.Map">
+        SELECT NAME
+            , COUNT(*) AS CNT
         FROM Intakes AS ANIMAL_INS
         WHERE NAME IS NOT NULL
         GROUP BY NAME
         HAVING COUNT(*) <![CDATA[>=]]> 2
         ORDER BY NAME
+        ;
+    </select>
+
+    <!-- 이름이 없이 보호소에 들어온 동물 조회 -->
+    <select id="selectNoNameAnimal" resultType="java.lang.String">
+        SELECT ANIMAL_ID
+        FROM Intakes AS ANIMAL_INS
+        WHERE NAME IS NULL
         ;
     </select>
 

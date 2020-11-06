@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.austinanimalcenter.shelter.inout.InAndOut">
+
+    <!-- 입양 된 동물 중 보호소 입소 기록이 없는 동물 조회 -->
+    <select id="selectNotFoundIntakeInOutcomesAnimal" resultType="java.util.Map">
+        SELECT AO.ANIMAL_ID
+            , AO.NAME
+            FROM (
+                SELECT ANIMAL_ID, NAME
+                FROM ANIMAL_OUTS
+                WHERE NAME IS NOT NULL
+                ) AO
+            LEFT OUTER JOIN
+                (
+                SELECT ANIMAL_ID, NAME
+                FROM ANIMAL_INS
+                ) AI
+            ON AO.ANIMAL_ID = AI.ANIMAL_ID
+        WHERE AI.NAME IS NULL
+        ORDER BY AO.ANIMAL_ID
+        ;
+    </select>
+
+</mapper>
