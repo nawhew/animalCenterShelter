@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class InAndOutDao {
@@ -15,8 +16,14 @@ public class InAndOutDao {
     SqlSession sqlSession;
 
 
-    public List<Outcomes> selectNotFoundIntakeInOutcomesAnimal() {
+    public List<Map<String, String>> selectNotFoundIntakeInOutcomesAnimal() {
         return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectNotFoundIntakeInOutcomesAnimal");
     }
+
+
+    public List<Map<String, String>> selectOutcomeFasterThanIntake() {
+        return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectOutcomeFasterThanIntake");
+    }
+
 
 }
