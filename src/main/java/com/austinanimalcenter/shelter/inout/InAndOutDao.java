@@ -20,10 +20,12 @@ public class InAndOutDao {
         return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectNotFoundIntakeInOutcomesAnimal");
     }
 
-
     public List<Map<String, String>> selectOutcomeFasterThanIntake() {
         return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectOutcomeFasterThanIntake");
     }
 
+    public List<Map<String, String>> selectIntactInShelter() {
+        return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectIntactInShelter");
+    }
 
 }

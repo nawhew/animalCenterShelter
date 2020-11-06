@@ -41,22 +41,23 @@
         ;
     </select>
 
-    <!-- 입양일이 입소일보다 빠른 입력이 잘못된 데이터 조회 -->
-    <select id="selectOutcomeFasterThanIntake" resultType="java.util.Map">
-        SELECT AI.NAME
-            , AI.DATETIME
-            FROM (
-                    SELECT ANIMAL_ID, NAME, DATETIME
-                    FROM INTAKES AS ANIMAL_INS
-                ) AI
-            LEFT OUTER JOIN
-                (
-                    SELECT ANIMAL_ID, NAME, DATETIME
-                    FROM OUTCOMES AS ANIMAL_OUTS
-                ) AO
-            ON AI.ANIMAL_ID = AO.ANIMAL_ID
-        WHERE AO.ANIMAL_ID IS NULL
-        ORDER BY AI.DATETIME
+    <!-- 입양 전에 보호소에서 중성화 수술을 거친 동물 조회 -->
+    <select id="selectIntactInShelter" resultType="java.util.Map">
+        SELECT AO.ANIMAL_ID
+            , AO.ANIMAL_TYPE
+            , AO.NAME
+        FROM (
+                SELECT ANIMAL_ID, ANIMAL_TYPE, NAME
+                FROM OUTCOMES AS ANIMAL_OUTS
+                WHERE SEX_UPON_OUTCOME NOT LIKE 'Intact%'
+            ) AO
+            , (
+                SELECT ANIMAL_ID, ANIMAL_TYPE, NAME
+                FROM INTAKES AS ANIMAL_INS
+                WHERE SEX_UPON_INTAKE LIKE 'Intact%'
+            ) AI
+        WHERE AI.ANIMAL_ID = AO.ANIMAL_ID
         ;
     </select>
+
 </mapper>
