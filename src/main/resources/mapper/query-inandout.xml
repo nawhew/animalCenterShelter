@@ -8,14 +8,14 @@
         SELECT AO.ANIMAL_ID
             , AO.NAME
             FROM (
-                SELECT ANIMAL_ID, NAME
-                FROM OUTCOMES AS ANIMAL_OUTS
-                WHERE NAME IS NOT NULL
+                    SELECT ANIMAL_ID, NAME
+                    FROM OUTCOMES AS ANIMAL_OUTS
+                    WHERE NAME IS NOT NULL
                 ) AO
             LEFT OUTER JOIN
                 (
-                SELECT ANIMAL_ID, NAME
-                FROM INTAKES AS ANIMAL_INS
+                    SELECT ANIMAL_ID, NAME
+                    FROM INTAKES AS ANIMAL_INS
                 ) AI
             ON AO.ANIMAL_ID = AI.ANIMAL_ID
         WHERE AI.NAME IS NULL
@@ -25,14 +25,15 @@
 
     <!-- 입양일이 입소일보다 빠른 입력이 잘못된 데이터 조회 -->
     <select id="selectOutcomeFasterThanIntake" resultType="java.util.Map">
-        SELECT AO.ANIMAL_ID, AO.NAME
+        SELECT AO.ANIMAL_ID
+            , AO.NAME
             FROM (
-            SELECT ANIMAL_ID, NAME, DATETIME
-            FROM OUTCOMES AS ANIMAL_OUTS
+                SELECT ANIMAL_ID, NAME, DATETIME
+                FROM OUTCOMES AS ANIMAL_OUTS
             ) AO
             , (
-            SELECT ANIMAL_ID, NAME, DATETIME
-            FROM INTAKES AS ANIMAL_INS
+                SELECT ANIMAL_ID, NAME, DATETIME
+                FROM INTAKES AS ANIMAL_INS
             ) AI
         WHERE AO.ANIMAL_ID = AI.ANIMAL_ID
         AND AO.DATETIME <![CDATA[<]]> AI.DATETIME
@@ -40,4 +41,22 @@
         ;
     </select>
 
+    <!-- 입양일이 입소일보다 빠른 입력이 잘못된 데이터 조회 -->
+    <select id="selectOutcomeFasterThanIntake" resultType="java.util.Map">
+        SELECT AI.NAME
+            , AI.DATETIME
+            FROM (
+                    SELECT ANIMAL_ID, NAME, DATETIME
+                    FROM INTAKES AS ANIMAL_INS
+                ) AI
+            LEFT OUTER JOIN
+                (
+                    SELECT ANIMAL_ID, NAME, DATETIME
+                    FROM OUTCOMES AS ANIMAL_OUTS
+                ) AO
+            ON AI.ANIMAL_ID = AO.ANIMAL_ID
+        WHERE AO.ANIMAL_ID IS NULL
+        ORDER BY AI.DATETIME
+        ;
+    </select>
 </mapper>
