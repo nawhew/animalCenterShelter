@@ -46,4 +46,8 @@ public class IntakesDao {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectIntakeDogs");
     }
 
+    public List<Intakes> selectNeutralization() {
+        return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectNeutralization");
+    }
+
 }
