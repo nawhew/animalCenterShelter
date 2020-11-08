@@ -60,4 +60,28 @@
         ;
     </select>
 
+    <!-- 입양되어 나간 동물 중 가장 오랜 기간 머무른 동물 2마리 조회 -->
+    <select id="selectsLongestStayInShelter" resultType="java.util.Map">
+        SELECT AIAO.ANIMAL_ID
+            , AIAO.NAME
+            , AIAO.PERIOD
+        FROM (
+                SELECT AO.ANIMAL_ID
+                    , AO.NAME
+                    , AO.DATETIME - AI.DATETIME AS PERIOD
+                FROM (
+                        SELECT ANIMAL_ID, NAME, DATETIME
+                        FROM OUTCOMES AS ANIMAL_OUTS
+                    ) AO
+                    LEFT OUTER JOIN
+                    (
+                        SELECT ANIMAL_ID, NAME, DATETIME
+                        FROM INTAKES AS ANIMAL_INS
+                    ) AI
+                    ON AO.ANIMAL_ID = AI.ANIMAL_ID
+            ) AS AIAO
+        ORDER BY AIAO.PERIOD DESC
+        LIMIT 2
+        ;
+    </select>
 </mapper>

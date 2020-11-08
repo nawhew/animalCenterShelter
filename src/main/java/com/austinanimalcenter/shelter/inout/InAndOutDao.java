@@ -28,4 +28,8 @@ public class InAndOutDao {
         return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectIntactInShelter");
     }
 
+    public List<Map<String, String>> selectsLongestStayInShelter() {
+        return this.sqlSession.selectList(InAndOutDao.NAME_SPACE + "selectsLongestStayInShelter");
+    }
+
 }
