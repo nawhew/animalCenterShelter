@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class IntakesDao {
@@ -30,23 +31,23 @@ public class IntakesDao {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectNotAgedAnimal");
     }
 
-    public List<Intakes> selectFirstInAnimalName() {
+    public List<String> selectFirstInAnimalName() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectFirstInAnimalName");
     }
 
-    public List<Intakes> selectCountCatAndDog() {
+    public List<Map<String, String>> selectCountCatAndDog() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectCountCatAndDog");
     }
 
-    public List<Intakes> selectDuplicateAnimalName() {
+    public List<Map<String, String>> selectDuplicateAnimalName() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectDuplicateAnimalName");
     }
 
-    public List<Intakes> selectIntakeDogs() {
+    public List<Map<String, String>> selectIntakeDogs() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectIntakeDogs");
     }
 
-    public List<Intakes> selectNeutralization() {
+    public List<Map<String, String>> selectNeutralization() {
         return this.sqlSession.selectList(IntakesDao.NAME_SPACE + "selectNeutralization");
     }
 

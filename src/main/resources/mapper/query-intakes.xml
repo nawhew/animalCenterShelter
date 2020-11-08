@@ -37,7 +37,7 @@
     </select>
 
     <!-- 가장 처음 들어온 동물 이름 조회 -->
-    <select id="selectFirstInAnimalName" resultType="com.austinanimalcenter.shelter.inout.Intakes">
+    <select id="selectFirstInAnimalName" resultType="java.lang.String">
         SELECT NAME
         FROM Intakes AS ANIMAL_INS
         ORDER BY DATETIME
@@ -76,7 +76,7 @@
     </select>
 
     <!-- 보호소에 들어온 동물 중 강아지(Dog)이고 이름을 일부만 아는 경우 조회 -->
-    <select id="selectIntakeDogs" resultType="java.lang.String">
+    <select id="selectIntakeDogs" resultType="java.util.Map">
         SELECT ANIMAL_ID, NAME
         FROM Intakes AS ANIMAL_INS
         WHERE ANIMAL_TYPE = 'Dog'
