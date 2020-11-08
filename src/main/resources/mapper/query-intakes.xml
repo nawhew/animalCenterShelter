@@ -75,4 +75,14 @@
         ;
     </select>
 
+    <!-- 보호소에 들어온 동물 중 강아지(Dog)이고 이름을 일부만 아는 경우 조회 -->
+    <select id="selectIntakeDogs" resultType="java.lang.String">
+        SELECT ANIMAL_ID, NAME
+        FROM ANIMAL_INS
+        WHERE ANIMAL_TYPE = 'Dog'
+        AND NAME LIKE '%EL%'
+        ORDER BY NAME
+        ;
+    </select>
+
 </mapper>
